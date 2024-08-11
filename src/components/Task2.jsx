@@ -74,10 +74,21 @@ export default function Task2() {
     },
   };
 
-  const chunkedData = chunkArray(data, 4);
+  const chunkWidth = () => {
+    if (window.innerWidth < 600) {
+      return 1;
+    } else if (window.innerWidth < 760) {
+      return 2;
+    } else if (window.innerWidth < 1024) {
+      return 3;
+    } else {
+      return 4;
+    }
+  };
+  const chunkedData = chunkArray(data, chunkWidth());
   return (
     <div className="carousel mt-14 mx-8 px-10">
-      <div className="h-48 sm:h-64 md:h-80 lg:h-96 bg-inherit mb-10">
+      <div className="h-[60vh] sm:h-[50vh] md:h-[45vh] lg:h-96 bg-inherit mb-10">
         {isLoading ? (
           <div className="w-full h-full flex justify-center items-center">
             <Vortex
@@ -104,13 +115,16 @@ export default function Task2() {
         ) : (
           <Carousel theme={customTheme} slideInterval={2000}>
             {chunkedData.map((chunk, index) => (
-              <div key={index} className="grid grid-cols-4">
+              <div
+                key={index}
+                className={`lg:grid md:flex sm:flex lg:grid-cols-${chunk.length} `}
+              >
                 {chunk.map((country, id) => {
                   const { image, title, price } = country;
                   return (
                     <div
                       key={id}
-                      className="col-span-1 carousel-item m-2 flex flex-col justify-between p-4 max-w-40 hover:scale-110 hover:shadow-2xl ml-16 transition-transform rounded-md outline-none bg-white "
+                      className="col-span-1 carousel-item m-2 flex flex-col justify-between p-4 max-w-40 hover:scale-110 hover:shadow-2xl mx-auto transition-transform rounded-md outline-none bg-white"
                     >
                       <div className="w-38">
                         <img src={image} alt="img" />
