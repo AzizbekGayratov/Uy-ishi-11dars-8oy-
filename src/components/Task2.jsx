@@ -117,7 +117,7 @@ export default function Task2() {
             {chunkedData.map((chunk, index) => (
               <div
                 key={index}
-                className={`lg:grid md:flex sm:flex lg:grid-cols-${chunk.length} `}
+                className={`lg:grid md:flex sm:flex grid-cols-${chunk.length} `}
               >
                 {chunk.map((country, id) => {
                   const { image, title, price } = country;
