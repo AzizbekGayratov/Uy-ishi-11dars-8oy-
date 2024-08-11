@@ -76,9 +76,9 @@ const data = labels.map((label) => {
     label === "07:00" ||
     label === "08:00"
   ) {
-    return Math.floor(Math.random() * 1500);
+    return Math.floor(Math.random() * 300);
   }
-  return Math.floor(Math.random() * 10000);
+  return Math.floor(Math.random() * 3600);
 });
 const datasets = [
   {
